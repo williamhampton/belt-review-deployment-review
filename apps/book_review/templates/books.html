@@ -1,0 +1,31 @@
+<head>
+</head>
+
+<body>
+
+  <h1>Recent Book Reviews</h1>
+  {% for book in books %}
+    <a href = 'books/{{ book.id }}'><h2>{{ book.title }}</h2></a>
+  {% endfor %}
+  <h1>Book Reviews</h1>
+  {% for book in books %}
+    <a href = 'books/{{ book.id }}'><h2>{{ book.title }}</h2></a>
+    <h3>{{ book.author }}</h3>
+    {% for review in reviews %}
+      {% if  review.book.id == book.id %}
+          <p> {{ review.review }}</p>
+          <b>Review by: </b><a href = 'users/{{ review.user.id }}'>{{ review.user.first_name}} {{ review.user.last_name }}</a>
+
+      {% endif %}
+    {% endfor %}
+
+    <form action = '/books/newreview/{{ book.id }}' method = 'post'>
+      <label for = 'newreview'>New Review:<textarea <textarea name = 'newreview' id = 'newreview'  rows="4" cols="50"></textarea></label>
+      {{ nullreview }}
+      {% csrf_token %}
+      <input type="submit" value="Submit Review">
+    </form>
+  {% endfor %}
+  <a href = '/books/add'>Add a Book</a>
+  <a href = '/'>Logout</a>
+</body>

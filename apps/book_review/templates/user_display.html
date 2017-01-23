@@ -1,0 +1,15 @@
+<head>
+</head>
+<body>
+  {% for user in users %}
+    <h1> Name: {{ user.first_name }} {{ user.last_name }}</h1>
+    <h3> Email: {{ user.email }}<h3>
+    <h4> Number of reviews: {{ number }}<h4>
+  {% endfor %}
+  <h4>Some of their reviews: </h4>
+  {% for review in reviews %}
+    <h5>{{ review.book.title }}</h5>
+    <p>{{ review.review }}</p>
+  {% endfor %}
+<a href = '/books'>Back to main Page</a>
+</body>

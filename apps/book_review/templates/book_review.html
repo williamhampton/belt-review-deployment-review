@@ -1,0 +1,17 @@
+<head>
+</head>
+<body>
+  <h1> TEst</h1>
+  {% for book in books %}
+    <h1>{{ book.title }}</h1>
+    <h3>{{ book.author }}</h3>
+  {% endfor %}
+  {% for review in reviews %}
+    <a href = '/users/{{ review.user.id }}'><h4>{{ review.user.first_name }} {{ review.user.last_name }}</h4></a>
+    <p>{{ review.review }}</p>
+    {% if review.user.id == user_id %}
+      <a href = '/reviews/destroy/{{ review.id }}'>Delete this post</a>
+    {% endif %}
+  {% endfor %}
+  <a href = '/books'>Back to home</a>
+</body>

@@ -1,0 +1,18 @@
+<head>
+</head>
+<body>
+  <h1>Add a book</h1>
+  {{ title }}
+  {{ author }}
+  {{ description }}
+  <form id = 'create' action = '/books/create' method = 'post'>
+    <label for= 'book'> Book Title:<input type = 'text' name = 'book' id = 'book'></label>
+    <p>{{ nulltitle }}</p>
+    <label for= 'author'> Author:<input type = 'text' name = 'author' id = 'author'></label>
+    <p> {{ nullauthor }}</p>
+    <label for= 'description'> Description:<textarea name = 'description' id = 'description'  rows="4" cols="50"></textarea></label>
+    <p> {{ nulldescription }}</p>
+    {% csrf_token %}
+    <input type="submit" value="Add a Book Review">
+  </form>
+</body>
