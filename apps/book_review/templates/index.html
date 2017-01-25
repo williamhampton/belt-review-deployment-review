@@ -3,12 +3,6 @@
   <link rel ='stylesheet' href = '{% static "index_css.css" %}'
 </head>
 <body>
-  {% for user in users %}
-    {{ user.first_name }}
-    {{ user.last_name }}
-    {{ user.email }}
-    {{ user.password }}
-  {% endfor %}
   <h1>Please Register</h1>
   <form id = 'add' action = '/add' method = 'post'>
     <label for= 'first'> First Name:<input type = 'text' name = 'first' id = 'first'></label>
