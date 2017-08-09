@@ -1,0 +1,89 @@
+<head>
+  {% load staticfiles %}
+  {% load app_tags %}
+  <link rel ='stylesheet' href = '{% static "books_css.css" %}'>
+</head>
+
+<body>
+<div id = 'container'>
+  <h1>Recent Book Reviews</h1>
+  {% for book in recent_books %}
+  <div class = 'recent'>
+    <a href = '/book/{{ book.id }}'><h2>{{ book.title }}</h2></a>
+  </div>
+  {% endfor %}
+  <h1>Book Reviews</h1>
+  <h1>{{ books_all }}</h1>
+      <p></p>
+      <h4>Select By Book Title</h4>
+      {% for array in alphabet %}
+        {% for letter in array %}
+        <b><a href  = '/books/{{ letter }}'>{{ letter }}</a></b>
+      {% endfor %}
+      {% endfor %}
+      <p></p>
+      <h4>Select a book By Author</h4>
+      {% for array in alphabet %}
+        {% for letter in array %}
+        <b><a href  = '/books/author/{{ letter }}'>{{ letter }}</a></b>
+      {% endfor %}
+      {% endfor %}
+      <p></p>
+      <form action = '/booksearch' method = 'post'>
+
+          <h3>Serch for a book:</h3>
+          <textarea <textarea name = 'booksearch' id = 'booksearch'  rows="1" cols="40"></textarea>
+            {{ nullsearch }}
+            {% csrf_token %}
+            <p><input type="submit" value="Search"></p>
+          </form>
+  {% for book in books %}
+  <div class = 'bookrev'>
+    <a href = '/book/{{ book.id }}'><h2>{{ book.title }}</h2></a>
+    <h3>{{ book.author }}</h3>
+      {% with variable=0 %}
+      {% for review in reviews %}
+        {% if variable <= 2 %}
+          {% if  review.book.id == book.id %}
+            {% adding variable 1 as variable%}
+            <p> {{ review.review }}</p>
+            <b>Review by: </b><a href = '/users/{{ review.user.id }}'>{{ review.user.first_name}} {{ review.user.last_name }}</a>
+          {% endif %}
+          {% if review.book.id == last_id %}
+            {% adding variable 3 %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% endwith %}
+
+
+    <form action = '/books/newreview2/{{ book.id }}' method = 'post'>
+
+        <h3>New Review</h3>
+        <textarea <textarea name = 'newreview' id = 'newreview'  rows="4" cols="40"></textarea>
+          {{ nullreview }}
+          {% csrf_token %}
+          <p><input type="submit" value="Submit Review"></p>
+        </form>
+
+          <a href = '/book/{{ book.id }}'><h4>More Reviews</h4></a>
+    </div>
+  {% endfor %}
+      <h4>Select By Book Title</h4>
+      {% for array in alphabet %}
+        {% for letter in array %}
+        <b><a href  = '/books/{{ letter }}'>{{ letter }}</a></b>
+      {% endfor %}
+      {% endfor %}
+      <p></p>
+      <h4>Select a book By Author</h4>
+      {% for array in alphabet %}
+        {% for letter in array %}
+        <b><a href  = '/books/author/{{ letter }}'>{{ letter }}</a></b>
+      {% endfor %}
+      {% endfor %}
+      <p></p>
+  <h4><a href = '/books/add'>Add a Book</a></h4>
+  <h4><a href = '/logout'>Logout</a></h4>
+</div>
+</body>

@@ -1,0 +1,17 @@
+<head>
+  {% load staticfiles %}
+  {% load app_tags %}
+  <link rel ='stylesheet' href = '{% static "books_css.css" %}'>
+
+</head>
+<body>
+  <div id = 'container'>
+    <h1>{{ letter }}</h1>
+    {% for book in books_all %}
+      <a href = '/book/{{ book.id }}'><h2>{{ book.title }}</h2></a>
+      <h4>Author: {{ book.author }}</h4>
+      {% endfor %}
+      <a href = '/books'>Back to home</a>
+
+  </div>
+</body>

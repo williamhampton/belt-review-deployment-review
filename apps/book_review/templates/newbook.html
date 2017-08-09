@@ -1,10 +1,14 @@
 <head>
+  <head>
+    {% load staticfiles %}
+    {% load app_tags %}
+    <link rel ='stylesheet' href = '{% static "books_css.css" %}'>
+
+  </head>
 </head>
 <body>
+  <div id = 'container'>
   <h1>Add a book</h1>
-  {{ title }}
-  {{ author }}
-  {{ description }}
   <form id = 'create' action = '/books/create' method = 'post'>
     <label for= 'book'> Book Title:<input type = 'text' name = 'book' id = 'book'></label>
     <p>{{ nulltitle }}</p>
@@ -15,4 +19,6 @@
     {% csrf_token %}
     <input type="submit" value="Add a Book Review">
   </form>
+  <a href = '/books'>Back to home</a>
+</div>
 </body>

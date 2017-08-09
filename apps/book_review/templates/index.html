@@ -1,21 +1,27 @@
 <head>
   {% load staticfiles %}
-  <link rel ='stylesheet' href = '{% static "index_css.css" %}'
+  <link rel ='stylesheet' href = '{% static "index_css.css" %}'>
 </head>
 <body>
+<div id = 'container'>
   <h1>Please Register</h1>
   <form id = 'add' action = '/add' method = 'post'>
-    <label for= 'first'> First Name:<input type = 'text' name = 'first' id = 'first'></label>
+    <label for= 'first'> First Name</label>
+    <p><input type = 'text' name = 'first' id = 'first'></p>
     <p>{{ enterfirst }}</p>
-    <label for= 'last'> Last Name:<input type = 'text' name = 'last' id = 'last'></label>
+    <label for= 'last'> Last Name</label>
+    <p><input type = 'text' name = 'last' id = 'last'></p>
     <p>{{ enterlast }}</p>
-    <label for= 'email'> Email:<input type = 'text' name = 'email' id = 'email'></label>
+    <label for= 'email'> Email</label>
+    <p><input type = 'text' name = 'email' id = 'email'></p>
     <p>{{ emailcon }}</p>
-    <label for = 'pass'> Password:<input type = 'password' name = 'pass' id = 'pass'></label>
+    <label for = 'pass'> Password</label>
+    <p><input type = 'password' name = 'pass' id = 'pass'></p>
     <p>{{ password }}</p>
-    <label for = 'passcon'> Confirm Password<input tpye = 'password' name = 'passcon' id = 'passcon'></label>
+    <label for = 'passcon'> Confirm Password</label>
+    <p><input type = 'password' name = 'passcon' id = 'passcon'></p>
     {% csrf_token %}
-    <input type="submit" value="Register">
+    <p><input type="submit" value="Register"></p>
   </form>
   {{ sucess }}
   <h2>Login</h2>
@@ -23,7 +29,14 @@
     <label for= 'email_login'>Email:<input type = 'text' name = 'email_login' id = 'email_login'></label>
     <label for = 'password_login'>Password:<input type = 'password' name = 'password_login' id = 'password_login'></label>
     {% csrf_token %}
-    <input type="submit" value="Login">
+    <p><input type="submit" value="Login"></p>
   </form>
   <p>{{ fail }}</p>
+  <h3>Or you can be a guest User</h3>
+  <form id = 'skip' action = '/books' method = 'post'>
+    {% csrf_token %}
+    <input type='submit' value="Skip">
+  </form>
+</div>
+
 </body>

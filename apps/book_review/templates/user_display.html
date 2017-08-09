@@ -1,6 +1,11 @@
 <head>
+  {% load staticfiles %}
+  {% load app_tags %}
+  <link rel ='stylesheet' href = '{% static "books_css.css" %}'>
+
 </head>
 <body>
+  <div id = 'container'>
   {% for user in users %}
     <h1> Name: {{ user.first_name }} {{ user.last_name }}</h1>
     <h3> Email: {{ user.email }}<h3>
@@ -8,8 +13,9 @@
   {% endfor %}
   <h4>Some of their reviews: </h4>
   {% for review in reviews %}
-    <h5>{{ review.book.title }}</h5>
+    <a href = '/book/{{ review.book.id }}'><h5>{{ review.book.title }}</h5></a>
     <p>{{ review.review }}</p>
   {% endfor %}
 <a href = '/books'>Back to main Page</a>
+</div>
 </body>

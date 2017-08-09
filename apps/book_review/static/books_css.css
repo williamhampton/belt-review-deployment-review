@@ -1,0 +1,24 @@
+#container{
+  text-align: center;
+  size: 100%;
+}
+.recent{
+  display: inline-block;
+  padding: 2%;
+}
+.bookrev{
+display: inline-block;
+width: 46%;
+border: 1px solid gray;
+vertical-align: top;
+margin:2px;
+height: 810px;
+}
+
+@media all and (max-width: 800px){
+  .bookrev{
+  display: block;
+  width: 99%;
+  border:1px solid gray;
+  height: auto;
+}}

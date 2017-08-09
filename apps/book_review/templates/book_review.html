@@ -1,11 +1,13 @@
 <head>
+  {% load staticfiles %}
+  {% load app_tags %}
+  <link rel ='stylesheet' href = '{% static "books_css.css" %}'>
 </head>
 <body>
-  <h1> TEst</h1>
+  <div id = 'container'>
   {% for book in books %}
     <h1>{{ book.title }}</h1>
     <h3>{{ book.author }}</h3>
-  {% endfor %}
   {% for review in reviews %}
     <a href = '/users/{{ review.user.id }}'><h4>{{ review.user.first_name }} {{ review.user.last_name }}</h4></a>
     <p>{{ review.review }}</p>
@@ -13,5 +15,18 @@
       <a href = '/reviews/destroy/{{ review.id }}'>Delete this post</a>
     {% endif %}
   {% endfor %}
+  <form action = '/books/newreviewfrombook/{{ book.id }}' method = 'post'>
+      <h3>New Review</h3>
+      <textarea <textarea name = 'newreview' id = 'newreview'  rows="4" cols="40"></textarea>
+        {{ nullreview }}
+        {% csrf_token %}
+        <p><input type="submit" value="Submit Review"></p>
+      </form>
+  {% endfor %}
   <a href = '/books'>Back to home</a>
+  {% for book in books %}
+    <p></p>
+    <a href = '/author/{{ book.id }}'>More Books By This Author</a>
+  {% endfor %}
+  </div>
 </body>
