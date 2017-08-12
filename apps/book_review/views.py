@@ -59,7 +59,14 @@ def add(request):
     if not error:
         context['sucess'] =  'You sucessfully registerd'
         users.objects.create(first_name = request.POST['first'], last_name = request.POST['last'], email = request.POST['email'], password= pw_hash)
-        return render(request, 'index.html',context)
+        request.session['first_name'] = firstname
+        request.session['last_name'] = lastname
+        request.session['email'] = email
+        i = 0;
+        for user in users_all:
+            i +=1;
+        request.session['id'] = i
+        return redirect('/books')
     else:
         return render(request, 'index.html',context)
 
